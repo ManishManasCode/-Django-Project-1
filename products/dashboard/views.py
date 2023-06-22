@@ -1,13 +1,13 @@
-from .serializers import ProductCategoryModelSerializer, ProductBrandModelSerializer, \
-    ProductColorModelSerializer, ProductDescriptionModelSerializer, ProductImageModelSerializer, ProductServiceModelSerializer, \
-        ProductVariationModelSerializer, ProductModelCreateSerializer, ProductModelListSerializer,DashboardProductMainModelCreateSerializer,\
-DashboardProductMainModelListSerializer
-from ..models import ProductCategoryModel, ProductBrandModel, ProductColorModel, ProductDescriptionModel, ProductImageModel,\
-    ProductServiceModel, ProductVariationModel, ProductModel, ProductMainModel
-from rest_framework import generics, status ,filters
+from .serializers import ProductCategoryModelSerializer, ProductBrandModelSerializer,\
+    ProductColorModelSerializer, ProductDescriptionModelSerializer, ProductImageModelSerializer,\
+        ProductServiceModelSerializer, ProductVariationModelSerializer, ProductModelCreateSerializer,\
+            ProductModelListSerializer, DashboardProductMainModelCreateSerializer, DashboardProductMainListSerializer
+from ..models import ProductCategoryModel, ProductBrandModel, ProductColorModel, ProductDescriptionModel,\
+    ProductImageModel, ProductServiceModel, ProductVariationModel, ProductModel, ProductMainModel
+from rest_framework import generics, status, filters 
 from rest_framework.response import Response  
 import django_filters
-from ..filters import ProductFilter
+from ..filters import ProductFilter, ProductMainModelFilter
 
 class DasboardProductCategoryModelListCreateAPIView(generics.ListCreateAPIView):
     queryset = ProductCategoryModel.objects.all()
@@ -290,8 +290,8 @@ class DasboardProductModelListAPIView(generics.ListAPIView):
     serializer_class = ProductModelListSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter]
     filterset_class = ProductFilter
-    search_fields = ["title", "brand__title", "description__description", "category__title", "services__title",
-                    "variation__title", "color__title"]
+    search_fields = ["title", "brand__title", "description__description", "category__title", "services__title", "variation__title", "color__title"]
+
 
 
 class DashboardProductMainModelCreateAPIView(generics.CreateAPIView):
@@ -301,4 +301,7 @@ class DashboardProductMainModelCreateAPIView(generics.CreateAPIView):
 
 class DashboardProductMainModelListAPIView(generics.ListAPIView):
     queryset = ProductMainModel.objects.all()
-    serializer_class = DashboardProductMainModelListSerializer
+    serializer_class = DashboardProductMainListSerializer
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter]
+    filterset_class = ProductMainModelFilter
+    search_fields = ["product__title", "product__brand__title","product__description__description","product__category__title", "product__services__title","product__variation__title","product_code", "variation__title", "color__title", "price"]

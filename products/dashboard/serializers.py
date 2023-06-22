@@ -1,4 +1,4 @@
-from ..models import ProductCategoryModel, ProductBrandModel, ProductColorModel, \
+from ..models import ProductCategoryModel, ProductBrandModel, ProductColorModel,\
     ProductDescriptionModel, ProductImageModel, ProductServiceModel, ProductVariationModel, ProductModel, ProductMainModel
 from rest_framework import serializers
 
@@ -74,7 +74,7 @@ class ProductModelListSerializer(serializers.ModelSerializer):
             data = ProductServiceModelSerializer(obj.services.all(), many=True).data 
         except Exception as e:
 
-            data = []
+            data = [str(e)]
         return data 
     
     def get_description(self, obj):
@@ -145,42 +145,44 @@ class ProductModelCreateSerializer(serializers.ModelSerializer):
             description_instance = ProductDescriptionModel.objects.create(description=data)
             instance.description.add(description_instance)
 
+
+
         return validated_data
     
-class DashboardProductMainModelCreateSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = ProductMainModel
-            fields = '__all__'
 
-class DashboardProductMainModelListSerializer(serializers.ModelSerializer):
+class DashboardProductMainModelCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductMainModel 
+        fields = "__all__"
+
+
+class DashboardProductMainListSerializer(serializers.ModelSerializer):
     product = serializers.SerializerMethodField()
     variation = serializers.SerializerMethodField()
     color = serializers.SerializerMethodField()
-
     class Meta:
-        model = ProductMainModel
+        model = ProductMainModel 
         fields = "__all__"
 
+    
     def get_variation(self, obj):
         try:
             data = ProductVariationModelSerializer(obj.variation, many=False).data
         except:
-            data = []
-        return data
-
+            data = {}
+        return data 
+    
     def get_color(self, obj):
         try:
-            data = ProductColorModelSerializer(obj.color, many=False).data
+            data = ProductColorModelSerializer(obj.color, many=False).data 
         except:
-            data = []
-        return data
+            data = {}
+        return data 
+
 
     def get_product(self, obj):
         try:
-            data = ProductModelListSerializer(obj.product, many=False).data
+            data = ProductModelListSerializer(obj.product, many=False).data 
         except:
-            data = []
+            data = {}
         return data
-        
-        
-    
