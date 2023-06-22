@@ -1,5 +1,10 @@
 from django.urls import path
-from .views import DasboardProductCategoryModelListCreateAPIView, DasboardProductBrandModelListCreateAPIView, DasboardProductColorModelListCreateAPIView, DasboardProductDescriptionModelListCreateAPIView, DasboardProductImageModelListCreateAPIView, DasboardProductServiceModelListCreateAPIView, DasboardProductVariationModelListCreateAPIView, DashboardProductModelCreateAPIView, DasboardProductModelListAPIView, DasboardProductCategoryModelGenericAPIView, DasboardProductBrandModelGenericAPIView, DasboardProductColorModelGenericAPIView, DasboardProductDescriptionModelGenericAPIView ,DasboardProductImageModelGenericAPIView, DasboardProductServiceModelGenericAPIView, DasboardProductVariationModelGenericAPIView
+from .views import DasboardProductCategoryModelListCreateAPIView, DasboardProductBrandModelListCreateAPIView, \
+DasboardProductColorModelListCreateAPIView, DasboardProductDescriptionModelListCreateAPIView, DasboardProductImageModelListCreateAPIView,\
+DasboardProductServiceModelListCreateAPIView, DasboardProductVariationModelListCreateAPIView, DashboardProductModelCreateAPIView,\
+DasboardProductModelListAPIView, DasboardProductCategoryModelGenericAPIView, DasboardProductBrandModelGenericAPIView, DasboardProductColorModelGenericAPIView, \
+DasboardProductDescriptionModelGenericAPIView ,DasboardProductImageModelGenericAPIView, DasboardProductServiceModelGenericAPIView, \
+DasboardProductVariationModelGenericAPIView,DashboardProductMainModelCreateAPIView,DashboardProductMainModelListAPIView
 
 urlpatterns = [
     path("product-category-list-create-api-view/", DasboardProductCategoryModelListCreateAPIView.as_view(), name="DasboardProductCategoryModelListCreateAPIView"),
@@ -25,4 +30,8 @@ urlpatterns = [
     
     path("product-create-api-view/", DashboardProductModelCreateAPIView.as_view(), name="DashboardProductModelCreateAPIView"),
     path("product-list-api-view/", DasboardProductModelListAPIView.as_view(), name="DasboardProductModelListAPIView"),
+
+    path("product-main-model-create-api-view/", DashboardProductMainModelCreateAPIView.as_view(),name="DashboardProductMainModelCreateAPIView"),
+    path("product-main-model-list-api-view/", DashboardProductMainModelListAPIView.as_view(),name="DashboardProductMainModelListAPIView"),
+
 ]

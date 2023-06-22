@@ -10,3 +10,4 @@ class WebsiteProductModelListAPIView(generics.ListAPIView):
     serializer_class = ProductModelListSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_class = ProductFilter
+    search_fields=["title", "brand__title", "description__description", "category__title", "services__title", "variation__title", "color__title"]
