@@ -1,5 +1,6 @@
 from django.urls import path 
-from .views import AppUserWishListUpdateAPIView, AppUserWishListRemoveAPIView, AppUserWishListAPIView, AppUserCartListUpdateAPIView, AppUserCartListRemoveAPIView, AppUserCartListAPIView, AppUserProfileModelUpdateAPIView
+from .views import AppUserWishListUpdateAPIView, AppUserWishListRemoveAPIView, AppUserWishListAPIView, \
+AppUserCartListUpdateAPIView, AppUserCartListRemoveAPIView, AppUserCartListAPIView, AppUserProfileModelUpdateAPIView
 
 urlpatterns = [
     path("add-to-wishlist/", AppUserWishListUpdateAPIView.as_view(), name="AppUserWishListUpdateAPIView"),
