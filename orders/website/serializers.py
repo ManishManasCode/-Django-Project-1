@@ -15,7 +15,6 @@ class WebsiteOrderFromCartModelSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
 
-        # print(validated_data)
         user_profile_instance = UserProfileModel.objects.get(user=self.context["request"].user)
         cart_instance =user_profile_instance.cart
         products = cart_instance.products.all()
